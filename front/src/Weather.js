@@ -76,3 +76,6 @@ class Weather extends Component{
 //     "name":"Banpobondong",
 //     "cod":200
 // }
+
+
+//https://reactjsexample.com/build-a-smooth-and-lightweight-react-component-loading-with-css/
