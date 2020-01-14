@@ -1,13 +1,13 @@
 const express = require('express');
 const axios = require('axios');
 var bodyParser = require('body-parser')
-
+var cors = require('cors');
 const app = express();
 const port = 9000;
 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
-
+app.use(cors());
 app.get('/', (req, res) => {
     var arr;
     axios.get('https://ipinfo.io/loc?token=815e4a609fdf39')

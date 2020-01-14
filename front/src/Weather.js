@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+
+// import logo from './logo.svg';
+// import './App.css';
 const axios = require('axios');
 
 class Weather extends Component{
@@ -7,27 +10,20 @@ class Weather extends Component{
         this.state = {
           error: null,
           isLoaded: false,
-          data: []
+          data:{}         
         };
       }
 
     componentDidMount(){
-        axios.get("http://localhost:9000")
-        .then(res => 
+        axios.get("http://localhost:9000/")
+        .then(res => {
             this.setState({
-                data : {
-                    coord: res.coord,
-                    weather: res.weather,
-                    temp: res.main,
-                    time: res.dt,
-                    timezone: res.timezone,
-                    sys: res.sys,
-                    name: res.name
-                },
+                data : res,
                 isLoaded: true,
                 }
             )
-        )
+            console.log(res);
+        })
         .catch(error => 
             this.setState({
                 isLoaded: true,
@@ -37,30 +33,45 @@ class Weather extends Component{
     }
 
     render(){
-        const { error, isLoaded, data} = this.state;
-        if(error){
-            return{
+        const data = this.state
+        // if(error){
+        //     return{
+                
 
-            }
+        //     }
+        // }
+
+        // else if(!isLoaded){
+        //     return{
+
+        //     }
+        // }
+
+        // else{
+            return(
+                <div className="App">
+      <header className="App-header">
+        <p>
+          Edit {data.data.coord}and save to reload.
+        </p>
+        <a
+          className="App-link"
+          href="https://reactjs.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Learn React
+        </a>
+      </header>
+    </div>
+            )
         }
-
-        else if(!isLoaded){
-            return{
-
-            }
-        }
-
-        else{
-            return{
-
-            }
-        }
-
     }
+    
 
-}
 
 
+export default Weather;
 //{
 //     "coord":{"lon":126.95,"lat":37.5},
 //     "weather":[{"id":803,"main":"Clouds","description":"broken clouds","icon":"04d"}],
