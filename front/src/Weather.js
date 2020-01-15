@@ -10,7 +10,7 @@ class Weather extends Component{
         this.state = {
           error: null,
           isLoaded: false,
-          data:{}         
+          data:""        
         };
       }
 
@@ -18,7 +18,7 @@ class Weather extends Component{
         axios.get("http://localhost:9000/")
         .then(res => {
             this.setState({
-                data : res,
+                data: res.data.name,
                 isLoaded: true,
                 }
             )
@@ -33,7 +33,6 @@ class Weather extends Component{
     }
 
     render(){
-        const data = this.state
         // if(error){
         //     return{
                 
@@ -51,9 +50,9 @@ class Weather extends Component{
             return(
                 <div className="App">
       <header className="App-header">
-        <p>
-          Edit {data.data.coord}and save to reload.
-        </p>
+        <ul>
+                {this.state.data}
+            </ul>
         <a
           className="App-link"
           href="https://reactjs.org"
