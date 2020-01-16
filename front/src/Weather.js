@@ -10,7 +10,13 @@ class Weather extends Component{
         this.state = {
           error: null,
           isLoaded: false,
-          data:""        
+          data:{},
+          weather: {},
+          main: {},
+          sys: {},
+          timezone: {},
+          name:""
+
         };
       }
 
@@ -18,11 +24,15 @@ class Weather extends Component{
         axios.get("http://localhost:9000/")
         .then(res => {
             this.setState({
-                data: res.data.name,
                 isLoaded: true,
+                weather: res.data.weather,
+                main: res.data.main,
+                sys: res.data.sys,
+                timezone: res.data.timezone,
+                name: res.data.name
                 }
             )
-            console.log(res);
+            console.log(res.data.coord);
         })
         .catch(error => 
             this.setState({
@@ -31,6 +41,7 @@ class Weather extends Component{
             })
         )
     }
+
 
     render(){
         // if(error){
@@ -48,10 +59,11 @@ class Weather extends Component{
 
         // else{
             return(
+          
                 <div className="App">
       <header className="App-header">
         <ul>
-                {this.state.data}
+                {this.state.data.coord.lat}
             </ul>
         <a
           className="App-link"
